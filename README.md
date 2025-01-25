@@ -31,12 +31,14 @@ A modified Stockfish engine that seeks positions with minimal advantage, playing
 ## Installation 🛠️
 1. Prerequisites:
     - Python 3.x
-    - A UCI-compatible chess GUI (like Cute Chess)
+    - A UCI-compatible chess GUI (Cute Chess is included)
+    - Qt installed if using Cute Chess
 
 2. Files in MonkFish:
     - monkfish.py - Core engine logic
     - uci.py - UCI interface
     - MonkFish.sh - Shell script for GUI integration
+    - cutechess - gui to test games
     - stockfish - Download the binary from [Official Stockfish Repository](https://github.com/official-stockfish/Stockfish/releases) 
     - README.md - Documentation
 
