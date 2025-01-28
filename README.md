@@ -11,6 +11,7 @@ MonkFish is a chess engine that maintains perfect balance, only capitalizing on 
 
 ## Technical Details ⚙️
 A modified Stockfish engine that seeks positions with minimal advantage, playing the most equal continuation until the opponent creates winning chances through their own moves. Uses deep calculation and multiple principal variations to find the most balanced positions possible.
+see [Technical Overview](/TECHNICAL_OVERVIEW.md)
 
 ## Reviews 💭
 > "I was winning... I think I was winning... was I winning? No, I defeated myself."
