@@ -1,6 +1,9 @@
 # MonkFish Chess Engine 🐟
 *The Zen of Chess* 🧘‍♂️
 
+<img src="TestGames/g0.gif" width="400">
+
+
 ## Description
 MonkFish is a chess engine that maintains perfect balance, only capitalizing on its opponent's missteps. Like a Zen master, it doesn't force advantages but rather lets players create their own downfall. Built on Stockfish's powerful evaluation, MonkFish chooses moves that maintain equality, making it a mirror that reflects your own chess journey. Every loss against MonkFish is a lesson in self-inflicted defeat. ♟️
 
