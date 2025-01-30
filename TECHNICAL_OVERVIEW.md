@@ -1,66 +1,111 @@
 # MonkFish Technical Documentation
 
-## Architecture and Implementation
+## Overview
 
-MonkFish uses Stockfish's core strength but changes how moves are selected. While traditional chess engines always choose the most aggressive moves, MonkFish looks for moves that keep the position balanced. This creates a unique playing style that waits for opponents to make mistakes rather than forcing advantages.
+MonkFish is a chess engine built on Stockfish that focuses on balanced, positional play rather than aggressive tactics. While most chess engines constantly seek advantages, MonkFish aims to maintain equality and capitalize on opponent mistakes.
 
-## Core Technology
+## How It Works
 
-Stockfish analyzes chess positions by building a game tree - mapping out possible moves and responses. For each position, it evaluates thousands of possibilities per second. MonkFish reads this analysis in real-time and specifically looks for moves that lead to equal positions.
+## Understanding Stockfish Architecture
+Stockfish, the foundation of MonkFish, is a sophisticated chess engine that combines several key components:
+Search Algorithm
+Stockfish uses an advanced alpha-beta search algorithm to analyze chess positions:
 
-Instead of changing Stockfish's complex code, we built a system that reads its output and selects moves differently. This approach has major benefits:
+Move Generation
 
-- We keep Stockfish's powerful ability to analyze positions
-- The code stays fast and efficient
-- Updates to Stockfish don't break our modifications
+Generates all legal moves in a position
+Uses bitboards (64-bit integers) to represent the chess board
+Efficiently tracks piece positions and possible moves
 
-## How Move Selection Works
 
-MonkFish processes positions in several steps:
+Position Evaluation
 
-1. Analyzes positions 20 moves deep for accurate evaluation
-2. Considers 25 different possible moves at each position
-3. Looks for moves that lead to near-equal positions (within ±0.01)
-4. Uses classical chess understanding rather than neural network tactics
+Evaluates positions using both material and positional factors
+Considers piece placement, king safety, pawn structure
+Uses a sophisticated evaluation function tuned through machine learning
 
-This creates an engine that maintains balanced positions while avoiding forced tactical sequences.
 
-## Performance Settings
+Tree Search
 
-The engine achieves its balanced style through carefully chosen parameters:
+Examines millions of positions per second
+Uses alpha-beta pruning to eliminate unpromising variations
+Implements advanced search techniques:
 
-- Depth of 20 moves provides strong but not overwhelming analysis
-- Skill Level 4 introduces some controlled variation in play
-- MultiPV 25 ensures we examine enough move choices
-- Disabled neural network reduces aggressive tactical calculations
+Null move pruning
+Late move reduction
+Futility pruning
+Transposition tables
 
-## Adjusting Engine Strength
+### Basic Architecture
 
-You can modify these key settings for different playing styles:
+MonkFish doesn't modify Stockfish's core code. Instead, it creates a wrapper that:
+1. Reads Stockfish's position analysis tree in real time
+2. Applies custom move selection algorithm
+3. Chooses moves that maintain balanced positions
 
-### Stronger Configuration:
+This approach preserves Stockfish's powerful analysis capabilities while implementing a different playing philosophy.
 
+### Move Selection Process
+
+When choosing a move, MonkFish:
+1. Analyzes positions up to 20 moves ahead
+2. Evaluates 25 candidate moves per position
+3. Prioritizes moves leading to equal positions (within ±0.01)
+4. Relies on traditional chess principles rather than neural network analysis
+
+The result is an engine that plays solid, positional chess instead of forcing tactical complications.
+
+### Key Technical Features
+
+- Reads and processes Stockfish output in real-time
+- Maintains high computational efficiency
+- Updates smoothly when new Stockfish versions release
+- Preserves all core analysis capabilities
+
+## Configuration Guide
+
+### Standard Settings
+
+- Analysis Depth: 20 moves
+- Skill Level: 4
+- Move Candidates (MultiPV): 25
+- Neural Network: Disabled
+
+These settings create MonkFish's characteristic balanced style.
+
+### Customization Options
+
+You can adjust MonkFish's strength using these parameters:
+
+For Stronger Play:
 ```
 Skill Level: 15-20
 Analysis Depth: 25+ moves
-Move Choices (MultiPV): 30+
-Equality Threshold: ±0.005
+Move Candidates: 30+
+Position Equality Range: ±0.005
 ```
 
-### Weaker Configuration:
-
+For Casual Play:
 ```
 Skill Level: 1-5
 Analysis Depth: 15-18 moves
-Move Choices (MultiPV): 15-20
-Equality Threshold: ±0.01
+Move Candidates: 15-20
+Position Equality Range: ±0.01
 ```
 
-## Technical Benefits
+## Technical Advantages
 
-Our approach offers clear advantages:
+1. Efficient Resource Usage
+   - Leverages Stockfish's optimized position analysis
+   - Maintains fast computation speed
+   - Minimal memory overhead
 
-- Uses Stockfish's efficient position analysis
-- Maintains high performance
-- Code remains easy to update
-- Simple to modify and adjust settings
+2. Maintainable Design
+   - Clean separation from Stockfish core
+   - Easy to update when Stockfish releases new versions
+   - Simple parameter adjustments for different playing styles
+
+3. Reliable Performance
+   - Stable evaluation criteria
+   - Consistent playing strength
+   - Predictable resource usage
