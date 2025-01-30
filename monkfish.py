@@ -18,8 +18,8 @@ class MonkFishParser:
         
         self._send_command("uci")
         self._send_command("setoption name UCI_UseNNUE value false")
-        self._send_command("setoption name Skill Level value 4")  # X = 0-20
-        self._send_command("setoption name MultiPV value 25")
+        self._send_command("setoption name Skill Level value 3")  # X = 0-20
+        self._send_command("setoption name MultiPV value 40")
         self._send_command("isready")
         self._wait_ready()
         
@@ -45,7 +45,7 @@ class MonkFishParser:
             "pv": move
         }
         
-    def get_drawing_move(self, position: str, target_depth: int = 20) -> Tuple[str, float]:
+    def get_drawing_move(self, position: str, target_depth: int = 2) -> Tuple[str, float]:
         if position.startswith("position"):
             position = position.split("moves ")[1] if "moves" in position else ""
             self._send_command(f"position startpos moves {position}")

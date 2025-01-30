@@ -1,0 +1,27 @@
+[Event "?"]
+[Site "?"]
+[Date "2025.01.24"]
+[Round "?"]
+[White "trollfish"]
+[Black "Raghav Ojha"]
+[Result "1-0"]
+[ECO "A01"]
+[GameDuration "00:10:36"]
+[GameEndTime "2025-01-24T03:07:44.121 CST"]
+[GameStartTime "2025-01-24T02:57:07.988 CST"]
+[Opening "Nimzovich-Larsen attack"]
+[PlyCount "53"]
+[TimeControl "40/900"]
+[Variation "Indian Variation"]
+
+1. b3 {8.9s} Nf6 {3.5s} 2. Bb2 {10s} e6 {4.6s} 3. a3 {8.5s} b6 {2.7s}
+4. f4 {5.4s} Bb7 {3.5s} 5. e3 {12s} Bd6 {3.3s} 6. Bc4 {14s} O-O {5.3s}
+7. Nf3 {10s} Nc6 {24s} 8. Bd3 {20s} Ne7 {3.9s} 9. Be2 {17s} Bc5 {37s}
+10. O-O {20s} h5 {17s} 11. Nc3 {18s} Bc6 {15s} 12. d4 {18s} Bd6 {6.5s}
+13. Bd3 {19s} Ned5 {8.8s} 14. Qe2 {9.5s} Nxc3 {8.8s} 15. Bxc3 {9.0s} Ne4 {11s}
+16. Bb2 {15s} Be7 {8.5s} 17. Rad1 {13s} d5 {9.1s} 18. Qe1 {11s} f6 {25s}
+19. h4 {11s} g5 {20s} 20. hxg5 {15s} fxg5 {6.7s} 21. Bxe4 {11s} dxe4 {4.3s}
+22. Ne5 {9.4s} Qe8 {23s} 23. Qc3 {10s} gxf4 {19s} 24. Nxc6 {13s} fxe3 {5.6s}
+25. d5 {13s} e2 {13s} 26. Nxe7+ {10s} Qxe7 {5.2s} 27. Qh8# {12s, White mates}
+1-0
+
