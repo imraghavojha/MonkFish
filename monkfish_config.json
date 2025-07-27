@@ -1,0 +1,16 @@
+{
+    "engine": {
+        "stockfish_path": "./stockfish",
+        "skill_level": 4,
+        "multipv": 40,
+        "use_nnue": false
+    },
+    "search": {
+        "default_depth": 3,
+        "drawing_threshold": 0.01
+    },
+    "info": {
+        "name": "MonkFish",
+        "author": "Raghav Ojha"
+    }
+}

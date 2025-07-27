@@ -1,8 +1,10 @@
 from monkfish import MonkFishParser
+from config import MonkFishConfig
 
 class UCIHandler:
     def __init__(self):
-        self.parser = MonkFishParser("./stockfish")
+        self.config = MonkFishConfig()
+        self.parser = MonkFishParser()
         
     def handle_position(self, cmd):
         self.current_position = cmd
@@ -18,8 +20,8 @@ class UCIHandler:
                 if cmd == "quit": 
                     break
                 elif cmd == "uci":
-                    print("id name MonkFish")
-                    print("id author Raghav Ojha")
+                    print(f"id name {self.config.get_engine_name()}")
+                    print(f"id author {self.config.get_author()}")
                     print("uciok")
                 elif cmd == "isready":
                     print("readyok")
