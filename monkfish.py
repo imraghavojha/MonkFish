@@ -1,12 +1,13 @@
-
 import re
 import subprocess
 from typing import Tuple, Optional, Dict
+from config import MonkFishConfig
 
 class MonkFishParser:
-    def __init__(self, stockfish_path: str = "stockfish"):
+    def __init__(self, config_file="monkfish_config.json"):
+        self.config = MonkFishConfig(config_file)
         self.engine = subprocess.Popen(
-            stockfish_path,
+            self.config.get_engine_path(),
             universal_newlines=True,
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
@@ -15,11 +16,10 @@ class MonkFishParser:
         self._init_engine()
         
     def _init_engine(self):
-        
         self._send_command("uci")
-        self._send_command("setoption name UCI_UseNNUE value false")
-        self._send_command("setoption name Skill Level value 3")  # X = 0-20
-        self._send_command("setoption name MultiPV value 40")
+        self._send_command(f"setoption name UCI_UseNNUE value {str(self.config.get_use_nnue()).lower()}")
+        self._send_command(f"setoption name Skill Level value {self.config.get_skill_level()}")
+        self._send_command(f"setoption name MultiPV value {self.config.get_multipv()}")
         self._send_command("isready")
         self._wait_ready()
         
@@ -45,7 +45,10 @@ class MonkFishParser:
             "pv": move
         }
         
-    def get_drawing_move(self, position: str, target_depth: int = 2) -> Tuple[str, float]:
+    def get_drawing_move(self, position: str, target_depth: int = None) -> Tuple[str, float]:
+        if target_depth is None:
+            target_depth = self.config.get_default_depth()
+            
         if position.startswith("position"):
             position = position.split("moves ")[1] if "moves" in position else ""
             self._send_command(f"position startpos moves {position}")
@@ -61,7 +64,7 @@ class MonkFishParser:
                 break
                 
             info = self._parse_info_line(line)
-            if info and abs(info["score"]) <= 0.01:
+            if info and abs(info["score"]) <= self.config.get_drawing_threshold():
                 best_info = info
                 
         return bestmove, best_info["score"] if best_info else 0.0
