@@ -3,6 +3,12 @@
 
 <img src="TestGames/g0.gif" width="400">
 
+## Quick Start ⚡
+```bash
+# One command setup - downloads everything automatically
+python3 setup.py
+```
+Then add MonkFish to your chess GUI using `MonkFish.sh` as the engine command. See [QUICKSTART.md](QUICKSTART.md) for detailed setup instructions.
 
 ## Description
 MonkFish is a chess engine that maintains perfect balance, only capitalizing on its opponent's missteps. Like a Zen master, it doesn't force advantages but rather lets players create their own downfall. Built on Stockfish's powerful evaluation, MonkFish chooses moves that maintain equality, making it a mirror that reflects your own chess journey. Every loss against MonkFish is a lesson in self-inflicted defeat. ♟️
@@ -33,39 +39,73 @@ see [Technical Overview](/TECHNICAL_OVERVIEW.md)
 > - Martin, Chess.com
 
 ## Installation 🛠️
+
+### Easy Way (Recommended)
+```bash
+python3 setup.py
+```
+The setup script automatically:
+- Downloads the correct Stockfish binary for your system  
+- Sets up all permissions
+- Creates default configuration
+- Tests that everything works
+
+### Manual Way
+If you prefer the old method:
 1. Prerequisites:
-    - Python 3.x
-    - A UCI-compatible chess GUI (Cute Chess is included)
-    - Qt installed if using Cute Chess
+    - Python 3.6+
+    - A UCI-compatible chess GUI
+    - Download stockfish binary from [Official Stockfish Repository](https://github.com/official-stockfish/Stockfish/releases)
 
-2. Files in MonkFish:
-    - monkfish.py - Core engine logic
-    - uci.py - UCI interface
-    - MonkFish.sh - Shell script for GUI integration
-    - cutechess - gui to test games
-    - stockfish - Download the binary from [Official Stockfish Repository](https://github.com/official-stockfish/Stockfish/releases) 
-    - README.md - Documentation
-
-3. Setup:
+2. Setup:
     ```bash
-    # Ensure stockfish is executable
+    # Make files executable
     chmod +x stockfish
-    
-    # Ensure shell script is executable
     chmod +x MonkFish.sh
     ```
 
 ## Usage 🎮
-### With Cute Chess:
-1. Open Cute Chess
-2. Go to Engines → Configure Engines → Add
-3. Configure engine:
-    - Name: MonkFish
-    - Command: /full/path/to/MonkFish.sh
-    - Working Directory: /full/path/to/MonkFish/folder
-    - Protocol: UCI
-4. Click OK to save
-5. Start a new game with MonkFish as your opponent
+
+### With Chess GUIs (Recommended):
+1. **Cute Chess**: Engines → Configure Engines → Add
+2. **Arena Chess**: Engines → Install New Engine  
+3. **Any UCI GUI**: Add engine with these settings:
+   - **Command**: `/full/path/to/MonkFish.sh`
+   - **Working Directory**: `/full/path/to/MonkFish/folder`
+   - **Protocol**: UCI
+
+### Command Line Testing:
+```bash
+python3 uci.py
+# Then type: uci, position startpos moves e2e4, go depth 2, quit
+```
+
+## Configuration ⚙️
+Edit `monkfish_config.json` to customize MonkFish's zen level:
+```json
+{
+  "engine": {
+    "skill_level": 3,          // 0-20 (higher = stronger)
+    "drawing_threshold": 0.01  // Lower = more zen
+  }
+}
+```
+
+## Files 📁
+- `monkfish.py` - Core engine logic
+- `uci.py` - UCI interface  
+- `config.py` - Configuration system
+- `uci_options.py` - UCI options handling
+- `MonkFish.sh` - Shell script for GUI integration
+- `setup.py` - Automatic setup script
+- `tests/` - Test suite
+- `stockfish` - Downloaded automatically by setup
+
+## Troubleshooting 🔧
+- **"Stockfish not found"**: Run `python3 setup.py`
+- **"Permission denied"**: Run `chmod +x MonkFish.sh stockfish`
+- **Engine too strong/weak**: Edit `skill_level` in `monkfish_config.json`
+- **Need help**: Check [QUICKSTART.md](QUICKSTART.md)
 
 ## Credits 🙏
 Built on Stockfish, modified to achieve enlightenment through equality.
