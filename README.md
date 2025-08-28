@@ -1,5 +1,10 @@
 # MonkFish Chess Engine 🐟
-*The Zen of Chess* 🧘‍♂️    **[🔗 Live Demo](https://imraghavojha.github.io/monkfish-link/)**
+*The Zen of Chess* 🧘‍♂️   
+
+<a href="https://imraghavojha.github.io/monkfish-link/" target="_blank">
+  <img src="https://img.shields.io/badge/Live%20Demo-Click%20Here-blue?style=for-the-badge" alt="Live Demo"/>
+</a>
+
 
 
 <img src="TestGames/g0.gif" width="400">
